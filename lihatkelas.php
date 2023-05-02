@@ -85,6 +85,12 @@
           <span>Siswa</span></a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Logout</span></a>
+      </li>
+
       <!-- Nav Item - Tables -->
       <!-- <li class="nav-item">
         <a class="nav-link" href="nilai.php">
@@ -174,7 +180,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Lihat Kelas yang diajarkan</h1>
+          <h1 class="h3 mb-4 text-gray-800">Lihat All Kelas</h1>
           <div class="col-md-7">
             <!-- DataTales -->
           <div class="card shadow mb-4">

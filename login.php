@@ -47,7 +47,9 @@
         <div class="row justify-content-center form-login mt-5">
             <div class="col-md-6">
                 <form action="" class="panel" method="post">
-                    <h3 class="mb-4 text-center text-uppercase">Login </h3>
+                    <h3 class="mb-4 text-center text-uppercase">Aplikasi Absensi Siswa</h3>
+                    <img src="logo.png" class="img-fluid mx-auto d-block" alt="Responsive image" width="120px" height="120px">
+                    <br>
                     <?php if( isset($error) ) :?>
                     <div class="alert alert-danger mr-5 ml-5 radius" role="alert">
                     Email / Password salah

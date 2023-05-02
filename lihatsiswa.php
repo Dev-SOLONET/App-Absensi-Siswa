@@ -90,7 +90,12 @@
           <span>Siswa</span></a>
       </li>
 
-
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Logout</span></a>
+      </li>
+      
       <!-- Nav Item - Tables -->
       <!-- <li class="nav-item">
         <a class="nav-link" href="nilai.php">
