@@ -5,7 +5,7 @@
     $user = "root";
     $pass = "root";
     $dbnm = "app_absensi_siswa";
-	$idkelas=$_GET["kelas"];
+	// $idkelas=$_GET["kelas"];
     $conn = mysqli_connect($host, $user, $pass);
     if ($conn) {
     $open = mysqli_select_db($conn,$dbnm);
@@ -18,7 +18,7 @@
     //akhir koneksi
      
 	#ambil data masukkan ke header
-	$query="SELECT DISTINCT(jadwal) AS jadwal FROM absensi WHERE id_kelas='$idkelas'";
+	$query="SELECT DISTINCT(jadwal) AS jadwal FROM absensi";
     $sql = mysqli_query ($conn,$query);
     $header = array();
     while ($row = mysqli_fetch_assoc($sql)) {

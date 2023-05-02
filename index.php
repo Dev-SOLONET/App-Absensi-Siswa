@@ -19,6 +19,14 @@
   $jumlah_matkul=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM matkul WHERE id_dosen='$dosen_id'"));
   $jumlah_kelas=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM kelas WHERE id_dosen='$dosen_id'"));
 	$jumlah_siswa=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM mahasiswa"));
+  //jumlahsiswahadir
+  $jumlah_siswa_hadir=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM absensi WHERE keterangan='Hadir'"));
+  //jumlahsiswaabsen
+  $jumlah_siswa_absen=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM absensi WHERE keterangan='Absen'"));
+  //jumlahsiswahadirhariini
+  $jumlah_siswa_hadir_hari_ini=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM absensi WHERE keterangan='Hadir' AND jadwal=CURDATE()"));
+  //jumlahsiswaabsenhariini
+  $jumlah_siswa_absen_hari_ini=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM absensi WHERE keterangan='Absen' AND jadwal=CURDATE()"));
 	
   ?>
 <!DOCTYPE html>
@@ -76,6 +84,19 @@
           <i class="fas fa-fw fa-user-check"></i>
           <span>Absensi</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatkelas.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Kelas</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatsiswa.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Siswa</span></a>
+      </li>
+
 
       <!-- Nav Item - Tables
       <li class="nav-item">
@@ -157,11 +178,11 @@
           <!-- Lihat Mahasiswa  -->
           <div class="col-xl-3 col-md-6 mb-4 ">
               <div class="card border-left-success shadow h-100 py-2">
-                 <a href="lihatmhs.php" style="text-decoration:none;">
+                 <a href="lihatsiswa.php" style="text-decoration:none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Siswa <br>yang diajarkan</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Siswa <br>yang terdaftar</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_siswa?> (Siswa)</div>
                     </div>
                     <div class="col-auto">
@@ -181,7 +202,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Kelas <br> yang diajarkan</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Kelas <br> yang diajarkan</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $jumlah_kelas?> (Kelas)</div>
                     </div>
                     <div class="col-auto">
@@ -196,16 +217,16 @@
 
             <!-- Rekap Absensi -->
          <div class="col-xl-3 col-md-6 mb-4 ">
-              <div class="card border-left-danger shadow h-100 py-2">
-              <a href="lihatmatkul.php" style="text-decoration:none;">
+              <div class="card border-left-warning shadow h-100 py-2">
+              <a href="lihatabsensi.php" style="text-decoration:none;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mata Kuliah <br> Yang diajarkan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$jumlah_matkul?> (Mata Kuliah)</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Siswa <br> Hadir</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$jumlah_siswa_hadir_hari_ini?> (Siswa)</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-book fa-2x text-gray-300"></i>
+                      <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -215,16 +236,16 @@
             <!-- Akhir Rekap Absensi -->
             <!-- Rekap Absensi -->
          <div class="col-xl-3 col-md-6 mb-4 ">
-              <div class="card border-left-warning shadow h-100 py-2">
-              <a href="#" style="text-decoration:none;" data-toggle="modal" data-target="#comingModal">
+              <div class="card border-left-danger shadow h-100 py-2">
+              <a href="lihatabsensi.php" style="text-decoration:none;" data-toggle="modal" data-target="#comingModal">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Tugas <br> yang sedang aktif</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">- (Tugas)</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Siswa <br> Absen</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$jumlah_siswa_absen_hari_ini?> (Siswa)</div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-book fa-2x text-gray-300"></i>
+                      <i class="fas fa-user fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -243,7 +264,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Andikha Dian Nugraha 2019</span>
+            <span>Copyright &copy; SMK Kanisius Bharata Karanganyar 2023</span>
           </div>
         </div>
       </footer>

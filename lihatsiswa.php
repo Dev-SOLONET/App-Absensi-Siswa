@@ -30,7 +30,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Absensi | SMK Kanisius Bharata Kra</title>
+  <title>Lihat Siswa | SMK Kanisius Bharata Kra</title>
 
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -73,10 +73,23 @@
      
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="absensi.php">
+        <a class="nav-link" href="lihatabsensi.php">
           <i class="fas fa-fw fa-user-check"></i>
           <span>Absensi</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatkelas.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Kelas</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatsiswa.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Siswa</span></a>
+      </li>
+
 
       <!-- Nav Item - Tables -->
       <!-- <li class="nav-item">
@@ -167,56 +180,61 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Absensi <?php if($_GET["kelas"] == "001"){echo 'R6A';}elseif($_GET["kelas"] == "002"){echo'R6X';}?>  <?=$_GET["jadwal"].' ('.$tgl.')'?> </h1>
+          <h1 class="h3 mb-4 text-gray-800">Lihat Siswa</h1>
 
             <!-- DataTales -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Daftar Mahasiswa </h6>
+              <h6 class="m-0 font-weight-bold text-primary">Daftar Siswa </h6>
             </div>
             <div class="card-body">             
-                <form role="form" action="simpanabsensi.php?id=<?php echo $_GET['kelas'];?>" method="post" name="postform" enctype="multipart/form-data">
               <div class="table-responsive">
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr align="center">
                       <th>No</th>
                       <th>Profil</th>
-                      <th>NPM</th>
+                      <th>NIS</th>
                       <th>Nama</th>
-                      <th>Status</th>
+                      <th>Kelas</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody align="center">
                     <?php
-                    $id_kelas=$_GET['kelas'];
-                    $sql="SELECT * FROM mahasiswa WHERE id_kelas='$id_kelas'";
+                    $sql="SELECT * FROM mahasiswa";
                     $query=mysqli_query($koneksi,$sql);
                     $i = 1;
                     while ($data=mysqli_fetch_array($query)){
                         $npm=$data["npm"];
                         $nama=$data["nama"];
+                        $foto=$data["foto"];
+                        $kelas=$data["id_kelas"];
+
                     ?>
                     <tr>
                       <td><?=$i++;?></td>
-                      <td><img class="img-profile rounded-circle" style="width:50px;height:50px;" src="img/<?= $data["foto"];?>"></td>
+                      <td><img class="img-profile rounded-circle" style="width:50px;height:50px;" src="img/<?=$foto?>"></td>
                       <td><?= $npm;?></td>
                       <td><?= $nama;?></td>
-                      <td> 
-                      <label class="radio-inline"><input type="radio" name="<?= 'ket'.$data["npm"];?>" id="<?php echo 'opsi1'.$npm;?>" value="Hadir">Hadir</label>
-                      <label class="radio-inline"><input type="radio" name="<?= 'ket'.$data["npm"];?>" id="<?php echo 'opsi1'.$npm;?>" value="Absen">Absen</label>
-                      <label class="radio-inline"><input type="radio" name="<?= 'ket'.$data["npm"];?>" id="<?php echo 'opsi1'.$npm;?>" value="Sakit">Sakit</label>
-                      <label class="radio-inline"><input type="radio" name="<?= 'ket'.$data["npm"];?>" id="<?php echo 'opsi1'.$npm;?>" value="Izin">Izin</label>
-
-                      </td>
+                      <td><?php if($kelas=="001"){
+                        echo 'R6A';
+                      }elseif($kelas=="002"){
+                        echo 'R6X';
+                      }
+                      ;?></td>
+                      
+                      <td><a href="#" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-user"></i>
+                    </span>
+                    <span class="text">Lihat Detail</span>
+                  </a></td>
                     </tr>
                     <?php }?>
                     </tbody>
                 </table>
             </div>
-            <button type="submit" class="btn btn-primary mt-4 col-md-2 offset-10">Simpan Data</button>
-            </form>
-            
             </div>
           </div>
         </div>

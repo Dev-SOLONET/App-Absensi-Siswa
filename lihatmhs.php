@@ -73,10 +73,23 @@
      
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="absensi.php">
+        <a class="nav-link" href="lihatabsensi.php">
           <i class="fas fa-fw fa-user-check"></i>
           <span>Absensi</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatkelas.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Kelas</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatmhs.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Siswa</span></a>
+      </li>
+
 
       <!-- Nav Item - Tables -->
       <!-- <li class="nav-item">
@@ -234,7 +247,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Andikha Dian Nugraha 2019</span>
+            <span>Copyright &copy; SMK Kanisius Bharata Karanganyar 2023</span>
           </div>
         </div>
       </footer>

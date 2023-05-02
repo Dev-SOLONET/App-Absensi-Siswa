@@ -24,7 +24,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Absensi | SMK Kanisius Bharata Kra </title>
+  <title>Rekap Absensi | SMK Kanisius Bharata Kra </title>
 
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -71,6 +71,19 @@
           <i class="fas fa-fw fa-user-check"></i>
           <span>Absensi</span></a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatkelas.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Kelas</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="lihatsiswa.php">
+          <i class="fas fa-fw fa-user-check"></i>
+          <span>Siswa</span></a>
+      </li>
+
 
       <!-- Nav Item - Tables -->
       <!-- <li class="nav-item">
@@ -166,12 +179,12 @@
 	  ?>
           <!-- Page Heading -->
           <h1 class="mb-3 text-gray-800">Rekap Absensi</h1>
-            <a href="cetakabsensi.php" class="btn btn-danger mb-4 btn-icon-split">
+            <!-- <a href="cetakabsensi.php" class="btn btn-danger mb-4 btn-icon-split">
             <span class="icon text-gray-100">
                 <i class="fas fa-file"></i>
             </span>
             <span class="text">Download PDF</span>
-            </a>
+            </a> -->
             <!-- DataTales -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -194,7 +207,7 @@
                   </thead>
                   <tbody align="center">
                     <?php
-                    $sql="SELECT * FROM mahasiswa ";
+                    $sql="SELECT * FROM mahasiswa";
                     $query=mysqli_query($koneksi,$sql);
                     $i = 1;
                     while ($data=mysqli_fetch_array($query)){
@@ -205,14 +218,21 @@
                       <td><?=$i++;?></td>
                       <td><img class="img-profile rounded-circle" style="width:50px;height:50px;" src="img/<?= $data["foto"];?>"></td>
                       <td><?= $npm;?></td>
-                      <td><?= $nama;?></td>
+                      <td><b><?= $nama;?></b></td>
                      
                             <?php
-                            $sqla="SELECT * FROM absensi WHERE npm='$npm'";
+                            $sqla="SELECT * FROM absensi WHERE npm='$npm' ORDER BY id_absen DESC";
                             $querya=mysqli_query($koneksi,$sqla);
                             while($data2=mysqli_fetch_array($querya)){
                             ?>			           
-                                <td><?php echo $data2["keterangan"]; ?></td>
+                                <td>
+                               
+                                  <?php if($data2["keterangan"]=='Hadir'){?>
+                                    <span class="badge badge-success"><?=$data2["keterangan"]?></span>
+                                  <?php }else{?>
+                                    <span class="badge badge-danger"><?=$data2["keterangan"]?></span>
+                                  <?php }?>
+                                </td>
                             <?php } ?>
                             </tr>
                     <?php } ?>
@@ -231,7 +251,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Andikha Dian Nugraha 2019</span>
+            <span>Copyright &copy; SMK Kanisius Bharata Karanganyar 2023</span>
           </div>
         </div>
       </footer>
