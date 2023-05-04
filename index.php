@@ -16,9 +16,9 @@
   $dosen_last_login = $_SESSION["dosen_user_last_login"];
  
   
-  $jumlah_matkul=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM matkul WHERE id_dosen='$dosen_id'"));
+  // $jumlah_matkul=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM matkul WHERE id_dosen='$dosen_id'"));
   $jumlah_kelas=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM kelas WHERE id_dosen='$dosen_id'"));
-	$jumlah_siswa=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM mahasiswa"));
+	$jumlah_siswa=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM siswa"));
   //jumlahsiswahadir
   $jumlah_siswa_hadir=mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM absensi WHERE keterangan='Hadir'"));
   //jumlahsiswaabsen
@@ -180,7 +180,7 @@
 
           <div class="row">
 
-          <!-- Lihat Mahasiswa  -->
+          <!-- Lihat Siswa  -->
           <div class="col-xl-3 col-md-6 mb-4 ">
               <div class="card border-left-success shadow h-100 py-2">
                  <a href="lihatsiswa.php" style="text-decoration:none;">
@@ -198,7 +198,7 @@
                 </a>
               </div>
             </div>
-            <!-- Akhir Lihat Mahasiswa -->
+            <!-- Akhir Lihat Siswa -->
 
             <!-- Tugas -->
             <div class="col-xl-3 col-md-6 mb-4 ">

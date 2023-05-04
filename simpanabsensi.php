@@ -2,7 +2,7 @@
 	include "koneksi.php";
     $id_kelas=$_GET['id'];
 
-	$querysiswa = "select * from mahasiswa where id_kelas='$id_kelas'";
+	$querysiswa = "select * from siswa where id_kelas='$id_kelas'";
 	$res_siswa=mysqli_query($koneksi,$querysiswa);
 	$berhasil=true;
 	while($data=mysqli_fetch_array($res_siswa)){

@@ -197,7 +197,7 @@
                   <tbody align="center">
                     <?php
                     $id_kelas=$_GET['kelas'];
-                    $sql="SELECT * FROM mahasiswa WHERE id_kelas='$id_kelas'";
+                    $sql="SELECT * FROM siswa WHERE id_kelas='$id_kelas'";
                     $query=mysqli_query($koneksi,$sql);
                     $i = 1;
                     while ($data=mysqli_fetch_array($query)){

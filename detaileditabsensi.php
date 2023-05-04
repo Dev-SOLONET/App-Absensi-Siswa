@@ -167,7 +167,7 @@
           <h1 class="h3 mb-4 text-gray-800">Ubah Absensi </h1>
             <form role="form" action="editabsensi.php?kelas=<?php echo $id_kelas;?>&npm=<?php echo $npm;?>" method="post" name="postform" enctype="multipart/form-data">
 			<?php
-            $sql="SELECT *,k.nama_kelas FROM mahasiswa s join kelas k on s.id_kelas=k.id_kelas WHERE npm='$npm'";
+            $sql="SELECT *,k.nama_kelas FROM siswa s join kelas k on s.id_kelas=k.id_kelas WHERE npm='$npm'";
             $query=mysqli_query($koneksi,$sql);
                         while ($data=mysqli_fetch_array($query)){
                             $nama=$data["nama"];

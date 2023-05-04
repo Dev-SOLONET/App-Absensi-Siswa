@@ -17,7 +17,7 @@
     $tgl=date("d-m-Y");
 	$jumlah_dosen=mysqli_num_rows(mysqli_query($koneksi,"select * from dosen where status='Dosen'"));
 	$jumlah_kelas=mysqli_num_rows(mysqli_query($koneksi,"select * from kelas"));
-	$jumlah_mahasiswa=mysqli_num_rows(mysqli_query($koneksi,"select * from mahasiswa"));
+	$jumlah_mahasiswa=mysqli_num_rows(mysqli_query($koneksi,"select * from siswa"));
 	
 	
 ?>
@@ -172,7 +172,7 @@
             <!-- DataTales -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Daftar Mahasiswa </h6>
+              <h6 class="m-0 font-weight-bold text-primary">Daftar Siswa </h6>
             </div>
             <div class="card-body">             
                 <form role="form" action="simpanabsensi.php?id=<?php echo $_GET['kelas'];?>" method="post" name="postform" enctype="multipart/form-data">
@@ -190,7 +190,7 @@
                   <tbody align="center">
                     <?php
                     $id_kelas=$_GET['kelas'];
-                    $sql="SELECT * FROM mahasiswa WHERE id_kelas='$id_kelas'";
+                    $sql="SELECT * FROM siswa WHERE id_kelas='$id_kelas'";
                     $query=mysqli_query($koneksi,$sql);
                     $i = 1;
                     while ($data=mysqli_fetch_array($query)){

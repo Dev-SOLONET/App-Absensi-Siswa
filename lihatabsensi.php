@@ -212,7 +212,7 @@
                   </thead>
                   <tbody align="center">
                     <?php
-                    $sql="SELECT * FROM mahasiswa";
+                    $sql="SELECT * FROM siswa";
                     $query=mysqli_query($koneksi,$sql);
                     $i = 1;
                     while ($data=mysqli_fetch_array($query)){

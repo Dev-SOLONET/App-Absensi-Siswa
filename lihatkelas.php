@@ -68,7 +68,7 @@
      
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="absensi.php">
+        <a class="nav-link" href="lihatabsensi.php">
           <i class="fas fa-fw fa-user-check"></i>
           <span>Absensi</span></a>
       </li>

@@ -17,7 +17,7 @@
     $tgl=date("d-m-Y");
 	$jumlah_dosen=mysqli_num_rows(mysqli_query($koneksi,"select * from dosen where status='Dosen'"));
 	$jumlah_kelas=mysqli_num_rows(mysqli_query($koneksi,"select * from kelas"));
-	$jumlah_mahasiswa=mysqli_num_rows(mysqli_query($koneksi,"select * from mahasiswa"));
+	$jumlah_mahasiswa=mysqli_num_rows(mysqli_query($koneksi,"select * from siswa"));
 	
 	
 ?>
@@ -207,7 +207,7 @@
                   </thead>
                   <tbody align="center">
                     <?php
-                    $sql="SELECT * FROM mahasiswa";
+                    $sql="SELECT * FROM siswa";
                     $query=mysqli_query($koneksi,$sql);
                     $i = 1;
                     while ($data=mysqli_fetch_array($query)){
@@ -223,9 +223,9 @@
                       <td><?= $npm;?></td>
                       <td><?= $nama;?></td>
                       <td><?php if($kelas=="001"){
-                        echo 'R6A';
+                        echo 'TKJ A';
                       }elseif($kelas=="002"){
-                        echo 'R6X';
+                        echo 'TKJ B';
                       }
                       ;?></td>
                       
