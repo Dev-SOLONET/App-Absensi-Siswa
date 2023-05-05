@@ -1,6 +1,6 @@
 <?php
     require 'koneksi.php';
-    function registrasi($data) {
+    function registrasi($data) {    
         global $koneksi;
     $email = strtolower(stripslashes($data["email"]));
     $password = mysqli_real_escape_string($koneksi, $data["password"]);

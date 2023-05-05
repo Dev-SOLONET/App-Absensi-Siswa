@@ -1,15 +1,14 @@
 <?php
 	include "koneksi.php";
-	$id_kelas=$_GET['id'];
 	$tgl_absen=$_GET['jadwal'];
 	
-    $sql="DELETE FROM absensi WHERE id_kelas='$id_kelas' AND jadwal='$tgl_absen'";
+    $sql="DELETE FROM absensi WHERE jadwal='$tgl_absen'";
 	
 	
 	
 	if($res_siswa=mysqli_query($koneksi,$sql)){
 		?> <script>alert('Hapus Data Berhasil')</script><?php
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=rekapabsensi.php?kelas='.$id_kelas.'">';		
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=lihatabsensi.php">';		
 	}else{
 		?> <script>alert('Simpan Data Gagal');history.go(-1);</script><?php		
 	}

@@ -206,7 +206,7 @@
                       <th>Nama</th>
                       <?php	
 						while ($data=mysqli_fetch_array($query)){?>
-						     <th><?=$data[0].' '?><br><a href="hapusabsensi.php?jadwal=<?=$data[0]?>"></a></th>  
+						     <th><?=$data[0].' '?><br><a href="hapusabsensi.php?jadwal=<?=$data[0]?>">(Hapus)</a></th>  
 						<?php }?>
                     </tr>
                   </thead>

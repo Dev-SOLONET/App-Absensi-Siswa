@@ -1,20 +1,40 @@
 <?php
-require_once('../config/koneksi.php');
+require('koneksi.php');
 
-if (isset($_POST['jadwal']) && isset($_POST['keterangan']) && isset($_POST['id_kelas']) && isset($_POST['npm'])) {
-	$jadwal   	    = $_POST['jadwal'];
-	$keterangan 	= $_POST['keterangan'];
-	$id_kelas 	    = $_POST['id_kelas'];
-	$npm 			= $_POST['npm'];
-	$sql = $conn->prepare("INSERT INTO absensi (jadwal, keterangan, id_kelas, npm) VALUES (?, ?, ?, ?)");
-	$sql->bind_param('ssdd', $jadwal, $keterangan, $id_kelas, $npm);
-	$sql->execute();
-	if ($sql) {
-		//echo json_encode(array('RESPONSE' => 'SUCCESS'));
-		header("location:../readapi/tampil.php");
-	} else {
-		echo json_encode(array('RESPONSE' => 'FAILED'));
-	}
-} else {
-	echo "GAGAL";
+//tanggal hari ini
+$jadwal    	= date("Y-m-d");
+$keterangan = 'Hadir';
+$id_kelas   = '002';
+$uid       	= $_POST['uid'];
+
+// pecah uid (array) menjadi 2 karakter
+$uid        = explode(' ', $uid);
+$string_uid = implode('', $uid);
+
+$npma       = mysqli_query($koneksi, "SELECT npm, nama FROM siswa WHERE uid='$string_uid'");
+$npm1       = mysqli_fetch_assoc($npma);
+if(!$npm1){
+	echo 'Gagal Absen!'	;
+	exit();
 }
+$npm       	= $npm1['npm'];
+
+$check_absensi = mysqli_query($koneksi, "SELECT * FROM absensi WHERE npm='$npm' AND jadwal='$jadwal'");
+if (mysqli_num_rows($check_absensi) > 0) {
+	echo 'Anda sudah absen!';
+	exit();
+}
+
+$result = mysqli_query($koneksi, "INSERT INTO absensi (jadwal, keterangan, id_kelas, npm) VALUES ('$jadwal', '$keterangan', '$id_kelas', '$npm')");
+if ($result) {
+	// echo $npm1['nama']." berhasil absen";
+	echo 'Berhasil Absen!';
+	/* echo json_encode(array(
+		'RESPONSE' 	=> 'SUCCESS',
+		'siswa' 	=> $npm1['nama'],
+	)); */
+	// header("location: tampil.php");
+} else {
+	echo json_encode(array('RESPONSE' => 'FAILED'));
+}
+
